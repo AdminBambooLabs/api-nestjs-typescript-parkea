@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { CreateTicketDto } from "./dto/create-ticket.dto";
+import { CreateTicketDto, ETicketStatus } from "./dto/create-ticket.dto";
 import { UpdateTicketDto } from "./dto/update-ticket.dto";
 import { PrismaService } from "../prisma/prisma.service";
 import { Prisma } from "@prisma/client";
@@ -69,6 +69,12 @@ export class TicketsService {
 
   async update(id: string, updateTicketDto: UpdateTicketDto) {
     try {
+      const ticketStatus = updateTicketDto?.status;
+
+      if (ticketStatus === ETicketStatus.closed) {
+        updateTicketDto.checkout = new Date();
+      }
+
       return await this.prisma.ticket.update({
         where: { id },
         data: updateTicketDto,
@@ -84,8 +90,11 @@ export class TicketsService {
 
   async remove(id: string) {
     try {
-      return await this.prisma.ticket.delete({
+      return await this.prisma.ticket.update({
         where: { id },
+        data: {
+          isActive: false,
+        },
       });
     } catch (error) {
       if (error.code === "P2025") {
