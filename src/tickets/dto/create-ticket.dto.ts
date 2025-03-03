@@ -9,26 +9,26 @@ import {
 import { Type } from "class-transformer";
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
-enum VehicleType {
+export enum EVehicleType {
   car = "car",
   motorcycle = "motorcycle",
   transport = "transport",
 }
 
-enum TicketStatus {
+export enum ETicketStatus {
   open = "open",
   canceled = "canceled",
   closed = "closed",
   paid = "paid",
 }
 
-enum PaymentType {
+export enum EPaymentType {
   pix = "pix",
   cash = "cash",
   card = "card",
 }
 
-enum PriceTable {
+export enum EPriceTable {
   hourly = "hourly",
   diarist = "diarist",
   monthly = "monthly",
@@ -41,38 +41,38 @@ export class CreateTicketDto {
   plate: string;
 
   @ApiProperty({
-    enum: VehicleType,
+    enum: EVehicleType,
     description: "Type of vehicle",
-    default: VehicleType.car,
+    default: EVehicleType.car,
   })
-  @IsEnum(VehicleType)
+  @IsEnum(EVehicleType)
   @IsNotEmpty()
-  vehicleType: VehicleType;
+  vehicleType: EVehicleType;
 
   @ApiProperty({
-    enum: TicketStatus,
+    enum: ETicketStatus,
     description: "Status of the ticket",
-    default: TicketStatus.open,
+    default: ETicketStatus.open,
   })
-  @IsEnum(TicketStatus)
+  @IsEnum(ETicketStatus)
   @IsNotEmpty()
-  status: TicketStatus;
+  status: ETicketStatus;
 
   @ApiPropertyOptional({
-    enum: PaymentType,
+    enum: EPaymentType,
     description: "Type of payment",
   })
-  @IsEnum(PaymentType)
+  @IsEnum(EPaymentType)
   @IsOptional()
-  paymentType?: PaymentType;
+  paymentType?: EPaymentType;
 
   @ApiProperty({
-    enum: PriceTable,
+    enum: EPriceTable,
     description: "Price table to be used",
   })
-  @IsEnum(PriceTable)
+  @IsEnum(EPriceTable)
   @IsNotEmpty()
-  priceTable: PriceTable;
+  priceTable: EPriceTable;
 
   @ApiProperty({
     description: "Check-in date and time",
@@ -81,7 +81,7 @@ export class CreateTicketDto {
   @Type(() => Date)
   @IsDate()
   @IsOptional()
-  checkin: Date;
+  checkin?: Date;
 
   @ApiPropertyOptional({
     description: "Check-out date and time",
