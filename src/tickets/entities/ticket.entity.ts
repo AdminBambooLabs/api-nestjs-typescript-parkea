@@ -4,7 +4,7 @@ export class Ticket implements PrismaTicket {
   id: string;
   plate: string;
   vehicleType: "car" | "motorcycle" | "transport";
-  status: "open" | "canceled" | "closed" | "paid";
+  status: "open" | "canceled" | "closed" | "finished";
   paymentType: "pix" | "cash" | "card" | null;
   priceTable: "hourly" | "diarist" | "monthly";
   checkin: Date;
