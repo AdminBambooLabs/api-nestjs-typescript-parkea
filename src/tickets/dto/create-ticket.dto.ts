@@ -19,7 +19,7 @@ export enum ETicketStatus {
   open = "open",
   canceled = "canceled",
   closed = "closed",
-  paid = "paid",
+  finished = "finished",
 }
 
 export enum EPaymentType {

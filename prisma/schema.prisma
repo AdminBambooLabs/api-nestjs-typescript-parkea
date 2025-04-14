@@ -38,7 +38,7 @@ enum TicketStatus {
   open
   canceled
   closed
-  paid
+  finished
 }
 
 enum PaymentType {

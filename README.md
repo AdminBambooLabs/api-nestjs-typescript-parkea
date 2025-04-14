@@ -16,7 +16,7 @@ The `Ticket` entity has the following fields:
 - `id`: UUID (primary key)
 - `plate`: string
 - `vehicleType`: enum (car | motorcycle | transport)
-- `status`: enum (open | canceled | closed | paid)
+- `status`: enum (open | canceled | closed | finished)
 - `paymentType`: enum (pix | cash | card)
 - `priceTable`: enum (hourly | diarist | monthly)
 - `checkin`: Date

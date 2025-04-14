@@ -7,7 +7,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery } from '@nestjs/
 @ApiTags('tickets')
 @Controller('tickets')
 export class TicketsController {
-  constructor(private readonly ticketsService: TicketsService) {}
+  constructor(private readonly ticketsService: TicketsService) { }
 
   @Post()
   @ApiOperation({ summary: 'Create a new ticket' })
@@ -23,10 +23,11 @@ export class TicketsController {
   @ApiQuery({ name: 'status', required: false, description: 'Filter by status' })
   @ApiQuery({ name: 'vehicleType', required: false, description: 'Filter by vehicle type' })
   findAll(
-    @Query('status') status?: 'open' | 'canceled' | 'closed' | 'paid',
+    @Query('status') status?: 'open' | 'canceled' | 'closed' | 'finished',
     @Query('vehicleType') vehicleType?: 'car' | 'motorcycle' | 'transport',
+    @Query('plate') plate?: string,
   ) {
-    return this.ticketsService.findAll({ status, vehicleType });
+    return this.ticketsService.findAll({ status, vehicleType, plate });
   }
 
   @Get(':id')
