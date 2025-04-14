@@ -27,6 +27,16 @@ Descrição dos bugs corrigidos.
 
 Descrição de atualizações de segurança.
 
+- 0.0.2 (14-04-2025)
+
+## Added
+
+- Search by plate via findAll ticket service
+
+## Changed
+
+- Change ticket status: "paid" to "finished"
+
 - 0.0.1 (09-03-2025)
 
 ## Added
