@@ -6,7 +6,7 @@ import { Prisma } from "@prisma/client";
 
 @Injectable()
 export class TicketsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async create(createTicketDto: CreateTicketDto) {
     try {
@@ -20,11 +20,12 @@ export class TicketsService {
   }
 
   async findAll(params: {
-    status?: "open" | "canceled" | "closed" | "paid";
+    status?: "open" | "canceled" | "closed" | "finished";
     vehicleType?: "car" | "motorcycle" | "transport";
+    plate?: string;
   }) {
     try {
-      const { status, vehicleType } = params;
+      const { status, vehicleType, plate } = params;
       const where: Prisma.TicketWhereInput = {};
 
       if (status) {
@@ -33,6 +34,13 @@ export class TicketsService {
 
       if (vehicleType) {
         where.vehicleType = vehicleType;
+      }
+
+      if (plate) {
+        where.plate = {
+          contains: plate,
+          mode: 'insensitive'
+        };
       }
 
       return this.prisma.ticket.findMany({
@@ -52,7 +60,6 @@ export class TicketsService {
       const ticket = await this.prisma.ticket.findUnique({
         where: { id },
       });
-
       if (!ticket) {
         throw new NotFoundException(`Ticket with ID ${id} not found`);
       }
