@@ -2,7 +2,7 @@
 CREATE TYPE "VehicleType" AS ENUM ('car', 'motorcycle', 'transport');
 
 -- CreateEnum
-CREATE TYPE "TicketStatus" AS ENUM ('open', 'canceled', 'closed', 'paid');
+CREATE TYPE "TicketStatus" AS ENUM ('open', 'canceled', 'closed', 'finished');
 
 -- CreateEnum
 CREATE TYPE "PaymentType" AS ENUM ('pix', 'cash', 'card');
