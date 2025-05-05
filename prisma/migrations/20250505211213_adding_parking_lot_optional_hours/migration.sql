@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "parkings" ALTER COLUMN "weekdayOpen" DROP NOT NULL,
+ALTER COLUMN "weekdayClose" DROP NOT NULL,
+ALTER COLUMN "weekendOpen" DROP NOT NULL,
+ALTER COLUMN "weekendClose" DROP NOT NULL;

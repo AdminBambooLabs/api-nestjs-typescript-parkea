@@ -52,3 +52,75 @@ enum PriceTable {
   diarist
   monthly
 }
+
+model Parking {
+  id           String   @id @default(uuid())
+  email        String
+  name         String
+  document     String
+  contact      String
+  street       String
+  streetNumber Int
+  city         String
+  state        String
+  zipCode      String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  weekdayOpen  String?
+  weekdayClose String?
+  weekendOpen  String?
+  weekendClose String?
+
+  hourlyPrices  HourlyPrices?
+  diaristPrices DiaristPrices?
+  monthlyPrices MonthlyPrices?
+
+  @@map("parkings")
+}
+
+model HourlyPrices {
+  id String @id @default(uuid())
+
+  parkingId String  @unique
+  parking   Parking @relation(fields: [parkingId], references: [id])
+
+  pricePer15         Float
+  pricePer30         Float
+  pricePer60         Float
+  pricePerAdditional Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("hourly_prices")
+}
+
+model DiaristPrices {
+  id String @id @default(uuid())
+
+  parkingId String  @unique
+  parking   Parking @relation(fields: [parkingId], references: [id])
+
+  pricePerHalfDay Float
+  pricePerFullDay Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("diarist_prices")
+}
+
+model MonthlyPrices {
+  id String @id @default(uuid())
+
+  parkingId String  @unique
+  parking   Parking @relation(fields: [parkingId], references: [id])
+
+  price Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("monthly_prices")
+}
