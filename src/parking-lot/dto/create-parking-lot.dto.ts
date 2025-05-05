@@ -69,14 +69,13 @@ export class CreateParkingLotDto {
   weekendClose: string;
 
   // Relations
-
   @ApiProperty({
     description: "Hourly prices",
     required: false,
     type: Object,
   })
   @IsOptional()
-  hourlyPrices?: HourlyPrices; // ou um DTO específico como HourlyPriceDto[]
+  hourlyPrices?: HourlyPrices;
 
   @ApiProperty({
     description: "Diarist prices",
