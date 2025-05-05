@@ -27,6 +27,12 @@ Descrição dos bugs corrigidos.
 
 Descrição de atualizações de segurança.
 
+- 0.0.3 (05-05-2025)
+
+## Added
+
+- Created parking lot module with price tables relations
+
 - 0.0.2 (14-04-2025)
 
 ## Added
