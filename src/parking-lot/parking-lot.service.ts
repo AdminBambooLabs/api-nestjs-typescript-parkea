@@ -82,14 +82,38 @@ export class ParkingLotService {
         where: { id },
         data: {
           ...rest,
-          hourlyPrices: hourlyPrices ? { create: hourlyPrices } : undefined,
-          diaristPrices: diaristPrices ? { create: diaristPrices } : undefined,
-          monthlyPrices: monthlyPrices ? { create: monthlyPrices } : undefined,
+          hourlyPrices: hourlyPrices
+            ? {
+                upsert: {
+                  where: { parkingId: id },
+                  update: hourlyPrices,
+                  create: hourlyPrices,
+                },
+              }
+            : undefined,
+          diaristPrices: diaristPrices
+            ? {
+                upsert: {
+                  where: { parkingId: id },
+                  update: diaristPrices,
+                  create: diaristPrices,
+                },
+              }
+            : undefined,
+          monthlyPrices: monthlyPrices
+            ? {
+                upsert: {
+                  where: { parkingId: id },
+                  update: monthlyPrices,
+                  create: monthlyPrices,
+                },
+              }
+            : undefined,
         },
         include: {
-          hourlyPrices: hourlyPrices ? true : undefined,
-          diaristPrices: diaristPrices ? true : undefined,
-          monthlyPrices: monthlyPrices ? true : undefined,
+          hourlyPrices: true,
+          diaristPrices: true,
+          monthlyPrices: true,
         },
       });
     } catch (error) {
