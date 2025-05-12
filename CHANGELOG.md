@@ -27,6 +27,12 @@ Descrição dos bugs corrigidos.
 
 Descrição de atualizações de segurança.
 
+- 0.0.4 (12-05-2025)
+
+## Fixed
+
+- Fixed update method for parking lots
+
 - 0.0.3 (05-05-2025)
 
 ## Added
