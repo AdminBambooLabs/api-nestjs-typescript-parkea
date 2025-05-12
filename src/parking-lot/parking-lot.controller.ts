@@ -63,7 +63,6 @@ export class ParkingLotController {
     @Param("id") id: string,
     @Body() updateParkingLotDto: UpdateParkingLotDto
   ) {
-    console.log("[controller updateParkingLotDto]", updateParkingLotDto);
     return this.parkingLotService.update(id, updateParkingLotDto);
   }
 
