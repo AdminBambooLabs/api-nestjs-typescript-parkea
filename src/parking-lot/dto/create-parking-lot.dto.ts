@@ -3,6 +3,11 @@ import { ApiProperty } from "@nestjs/swagger";
 import { DiaristPrices, HourlyPrices, MonthlyPrices } from "@prisma/client";
 
 export class CreateParkingLotDto {
+  @ApiProperty({ description: "Cognito user ID" })
+  @IsString()
+  @IsNotEmpty()
+  cognitoId: string;
+
   @ApiProperty({ description: "Parking lot register email" })
   @IsString()
   @IsNotEmpty()
@@ -10,42 +15,42 @@ export class CreateParkingLotDto {
 
   @ApiProperty({ description: "Parking lot name" })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   name: string;
 
   @ApiProperty({ description: "Parking lot document (e.g., CNPJ)" })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   document: string;
 
   @ApiProperty({ description: "Parking lot contact (e.g., phone)" })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   contact: string;
 
   @ApiProperty({ description: "Street name" })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   street: string;
 
   @ApiProperty({ description: "Street number" })
   @IsInt()
-  @IsNotEmpty()
+  @IsOptional()
   streetNumber: number;
 
   @ApiProperty({ description: "City name" })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   city: string;
 
   @ApiProperty({ description: "State abbreviation (e.g., SP)" })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   state: string;
 
   @ApiProperty({ description: "ZIP code" })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   zipCode: string;
 
   @ApiProperty({ description: "Weekday opening time (e.g., 08:00)" })

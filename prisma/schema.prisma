@@ -55,15 +55,16 @@ enum PriceTable {
 
 model Parking {
   id           String   @id @default(uuid())
+  cognitoId    String
   email        String
-  name         String
-  document     String
-  contact      String
-  street       String
-  streetNumber Int
-  city         String
-  state        String
-  zipCode      String
+  name         String?
+  document     String?
+  contact      String?
+  street       String?
+  streetNumber Int?
+  city         String?
+  state        String?
+  zipCode      String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
