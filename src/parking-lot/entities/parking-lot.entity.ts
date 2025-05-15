@@ -7,6 +7,7 @@ import {
 
 export class Parking implements PrismaParking {
   id: string;
+  cognitoId: string;
   email: string;
   name: string;
   document: string;
