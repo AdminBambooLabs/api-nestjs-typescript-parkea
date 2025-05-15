@@ -27,6 +27,16 @@ Descrição dos bugs corrigidos.
 
 Descrição de atualizações de segurança.
 
+- 0.0.5 (15-05-2025)
+
+## Added
+
+- Added cognito id to parking lot
+
+## Changed
+
+- Changed parking lot fields to optional
+
 - 0.0.4 (12-05-2025)
 
 ## Fixed
