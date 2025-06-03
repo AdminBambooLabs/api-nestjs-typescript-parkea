@@ -27,6 +27,12 @@ Descrição dos bugs corrigidos.
 
 Descrição de atualizações de segurança.
 
+- 0.0.6 (03-06-2025)
+
+## Changed
+
+- Added ability to search parking lots by cognito id
+
 - 0.0.5 (15-05-2025)
 
 ## Added
