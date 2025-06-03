@@ -14,4 +14,5 @@ export class Ticket implements PrismaTicket {
   createdAt: Date;
   updatedAt: Date;
   isActive: boolean;
+  parkingId: string;
 }

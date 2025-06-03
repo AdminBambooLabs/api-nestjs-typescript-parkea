@@ -29,12 +29,12 @@ export class ParkingLotController {
     return this.parkingLotService.create(createParkignLotDto);
   }
 
-  @Get()
-  @ApiOperation({ summary: "Get all parking lots" })
-  @ApiResponse({ status: 200, description: "Return all parking lots." })
-  findAll() {
-    return this.parkingLotService.findAll();
-  }
+  // @Get()
+  // @ApiOperation({ summary: "Get all parking lots" })
+  // @ApiResponse({ status: 200, description: "Return all parking lots." })
+  // findAll() {
+  //   return this.parkingLotService.findAll();
+  // }
 
   @Get(":id")
   @ApiOperation({ summary: "Get a parking lot by id" })

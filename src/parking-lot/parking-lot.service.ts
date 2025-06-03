@@ -51,14 +51,15 @@ export class ParkingLotService {
 
   async findOne(id: string) {
     try {
-      const parkingLot = await this.prisma.parking.findUnique({
-        where: { id },
+      const parkingLot = await this.prisma.parking.findFirst({
+        where: { OR: [{ cognitoId: id }, { id }] },
         include: {
           hourlyPrices: true,
           diaristPrices: true,
           monthlyPrices: true,
         },
       });
+
       if (!parkingLot) {
         throw new NotFoundException(`Parking lot with ID ${id} not found`);
       }

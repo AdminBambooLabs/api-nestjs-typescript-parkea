@@ -104,4 +104,11 @@ export class CreateTicketDto {
   @IsNumber()
   @IsOptional()
   total?: number;
+
+  @ApiProperty({
+    description: "Parking Id",
+  })
+  @Type(() => String)
+  @IsString()
+  parkingId: string;
 }
