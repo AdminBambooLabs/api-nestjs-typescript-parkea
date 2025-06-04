@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common";
 import { CreateTicketDto, ETicketStatus } from "./dto/create-ticket.dto";
 import { UpdateTicketDto } from "./dto/update-ticket.dto";
 import { PrismaService } from "../prisma/prisma.service";
@@ -6,7 +10,7 @@ import { Prisma } from "@prisma/client";
 
 @Injectable()
 export class TicketsService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async create(createTicketDto: CreateTicketDto) {
     try {
@@ -23,10 +27,19 @@ export class TicketsService {
     status?: "open" | "canceled" | "closed" | "finished";
     vehicleType?: "car" | "motorcycle" | "transport";
     plate?: string;
+    parkingId: string;
   }) {
     try {
-      const { status, vehicleType, plate } = params;
-      const where: Prisma.TicketWhereInput = {};
+      const { status, vehicleType, plate, parkingId } = params;
+
+      if (!parkingId) {
+        throw new BadRequestException("Parking ID is required");
+      }
+
+      const where: Prisma.TicketWhereInput = {
+        parkingId: parkingId,
+        isActive: true,
+      };
 
       if (status) {
         where.status = status;
@@ -39,7 +52,7 @@ export class TicketsService {
       if (plate) {
         where.plate = {
           contains: plate,
-          mode: 'insensitive'
+          mode: "insensitive",
         };
       }
 
@@ -57,9 +70,10 @@ export class TicketsService {
 
   async findOne(id: string) {
     try {
-      const ticket = await this.prisma.ticket.findUnique({
+      const ticket = await this.prisma.ticket.findFirst({
         where: { id },
       });
+
       if (!ticket) {
         throw new NotFoundException(`Ticket with ID ${id} not found`);
       }
