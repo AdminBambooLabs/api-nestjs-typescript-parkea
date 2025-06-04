@@ -27,6 +27,12 @@ Descrição dos bugs corrigidos.
 
 Descrição de atualizações de segurança.
 
+- 0.0.7 (04-06-2025)
+
+## Changed
+
+- Improve search behavior for the relation between tickets and parking lot
+
 - 0.0.6 (03-06-2025)
 
 ## Changed
